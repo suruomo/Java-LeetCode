@@ -7,34 +7,26 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        String s="11";
-        String t="99";
-        System.out.println(solve(s,t));
+        int[] nums={10,1,2,5,8,7,3,0,4,6,9};
+
     }
-    public static String solve (String s, String t) {
-        char[] chars1=s.toCharArray();
-        char[] chars2=t.toCharArray();
-        int i=s.length()-1;
-        int j=t.length()-1;
-        // 进位
-        int carry=0;
-        StringBuilder stringBuilder=new StringBuilder();
-        while (i>=0||j>=0||carry!=0){
-            int a=0,b=0;
-            if (i>=0){
-                a=chars1[i]-'0';
-                i--;
+
+    public int lengthOfLIS(int[] nums) {
+        int length=nums.length;
+        int[] dp=new int[length];
+        dp[0]=1;
+        int maxDepth=0;
+        for (int i = 1; i < length; i++) {
+            dp[i]=1;
+            for (int j = 0; j < i; j++) {
+                if (nums[j]<nums[i]){
+                    dp[i]=Math.max(dp[i],dp[j]+1);
+                }
             }
-            if (j>=0){
-                b=chars2[j]-'0';
-                j--;
-            }
-            int sum=a+b+carry;
-            int rem=sum%10;
-            carry=sum/10;
-            stringBuilder.append(rem);
+            maxDepth=Math.max(maxDepth,dp[i]);
         }
-        stringBuilder.reverse();
-        return new String(stringBuilder);
+        return maxDepth;
     }
+
+
 }
