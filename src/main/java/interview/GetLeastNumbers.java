@@ -1,6 +1,7 @@
 package interview;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
@@ -16,6 +17,8 @@ public class GetLeastNumbers {
         if (k> input.length){
             return new ArrayList<>();
         }
+        // PriorityQueue默认创建的是最小堆
+        // 最大堆创建方式:PriorityQueue<Integer> queue=new PriorityQueue<>(Collections.reverseOrder());
         PriorityQueue<Integer> queue=new PriorityQueue<>();
         for (int item:input){
             queue.offer(item);
